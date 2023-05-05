@@ -10,6 +10,6 @@ import lombok.Data;
 public class Addition {
     private Integer value1;
     private Integer value2;
-    private Float percentage;
-    private Float total;
+    private Integer percentage;
+    private double total;
 }
