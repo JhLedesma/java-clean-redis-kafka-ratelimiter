@@ -28,6 +28,8 @@ public class PercentageBeans {
     private String percentageUrl;
     @Value("${clients.randominteger.cachedSeconds}")
     private Integer cachedSeconds;
+    @Value("${clients.randominteger.mock}")
+    private boolean mock;
 
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
@@ -45,7 +47,7 @@ public class PercentageBeans {
 
     @Bean
     public PercentageClient percentageClient(RestTemplate client) {
-        return new PercentageClientImpl(client, percentageUrl);
+        return new PercentageClientImpl(client, percentageUrl, mock);
     }
 
     @Bean
