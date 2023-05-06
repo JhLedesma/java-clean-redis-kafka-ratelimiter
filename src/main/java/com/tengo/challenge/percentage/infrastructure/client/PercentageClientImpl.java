@@ -7,6 +7,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.retry.annotation.Backoff;
 import org.springframework.retry.annotation.Retryable;
 import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 public class PercentageClientImpl implements PercentageClient {
