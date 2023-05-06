@@ -24,5 +24,6 @@ public class RecordEntity {
     private int responseCode;
     @Column(name = "response_status", nullable = false)
     private String responseStatus;
+    @Column(columnDefinition = "TEXT")
     private String response;
 }

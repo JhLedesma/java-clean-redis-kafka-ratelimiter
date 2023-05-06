@@ -1,17 +1,12 @@
 package com.tengo.challenge.addition.infrastructure.controller;
 
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tengo.challenge.addition.application.AdditionService;
 import com.tengo.challenge.addition.domain.Addition;
 import com.tengo.challenge.record.application.RecordService;
-import com.tengo.challenge.record.domain.Record;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
@@ -31,9 +26,9 @@ public class AdditionController {
     }
 
     @PostMapping("/addition")
-    public Addition sum(@Valid @RequestBody AdditionInput additionInput) throws JsonProcessingException {
-        Addition addition = additionService.sum(additionInput.getValue1(), additionInput.getValue2());
-        recordService.save(new Record("/test", 200, HttpStatus.OK.toString(), objectMapper.writeValueAsString(addition)));
-        return addition;
+    @ResponseBody
+    public ResponseEntity<Addition> sum(@Valid @RequestBody AdditionInput additionInput) {
+        Addition result = additionService.sum(additionInput.getValue1(), additionInput.getValue2());
+        return ResponseEntity.ok().body(result);
     }
 }
