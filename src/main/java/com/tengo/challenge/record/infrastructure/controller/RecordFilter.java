@@ -1,5 +1,6 @@
 package com.tengo.challenge.record.infrastructure.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tengo.challenge.record.application.RecordService;
 import com.tengo.challenge.record.domain.Record;
@@ -29,9 +30,17 @@ public class RecordFilter implements Filter {
         try {
             chain.doFilter(request, httpResponse);
         } finally {
-            String responseBody = objectMapper.writeValueAsString(new String(httpResponse.getContentAsByteArray()));
-            recordService.save(new Record(endpoint, httpResponse.getStatus(), HttpStatus.valueOf(httpResponse.getStatus()).toString(), responseBody));
+            recordService.save(new Record(endpoint, httpResponse.getStatus(), HttpStatus.valueOf(httpResponse.getStatus()).toString(), getResponseBody(httpResponse)));
             httpResponse.copyBodyToResponse();
         }
+    }
+
+    private String getResponseBody(ContentCachingResponseWrapper httpResponse) throws JsonProcessingException {
+        String responseBody = null;
+        int statusCode = httpResponse.getStatus();
+        if (statusCode >= 200 && statusCode < 300) {
+            responseBody = objectMapper.writeValueAsString(new String(httpResponse.getContentAsByteArray()));
+        }
+        return responseBody;
     }
 }
