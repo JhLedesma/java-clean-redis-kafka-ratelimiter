@@ -35,6 +35,12 @@ public class GlobalExceptionController {
         return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorOutput handleTooManyRequestsException(Exception exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
     private ErrorOutput getErrorOutput(Throwable exception, WebRequest request, HttpStatus httpStatus) {
         return new ErrorOutput(httpStatus.value(), httpStatus.toString(), request.getDescription(false), exception.getMessage(), ExceptionUtils.getStackTrace(exception));
     }
