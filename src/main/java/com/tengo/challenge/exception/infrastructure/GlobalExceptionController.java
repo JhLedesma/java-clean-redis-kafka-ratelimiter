@@ -1,7 +1,6 @@
 package com.tengo.challenge.exception.infrastructure;
 
-import com.tengo.challenge.exception.domain.ErrorOutput;
-import com.tengo.challenge.exception.domain.TooManyRequestsException;
+import com.tengo.challenge.exception.domain.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,7 +17,25 @@ public class GlobalExceptionController {
         return getErrorOutput(exception, request, HttpStatus.TOO_MANY_REQUESTS);
     }
 
-    private ErrorOutput getErrorOutput(TooManyRequestsException exception, WebRequest request, HttpStatus httpStatus) {
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorOutput handleTooManyRequestsException(BadRequestException exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorOutput handleTooManyRequestsException(ResourceNotFoundException exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(ChallangeException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorOutput handleTooManyRequestsException(ChallangeException exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    private ErrorOutput getErrorOutput(Throwable exception, WebRequest request, HttpStatus httpStatus) {
         return new ErrorOutput(httpStatus.value(), httpStatus.toString(), request.getDescription(false), exception.getMessage(), ExceptionUtils.getStackTrace(exception));
     }
 }
