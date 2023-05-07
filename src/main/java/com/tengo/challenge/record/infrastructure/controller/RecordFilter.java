@@ -11,6 +11,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.stream.Stream;
 
 public class RecordFilter implements Filter {
 
@@ -30,7 +31,9 @@ public class RecordFilter implements Filter {
         try {
             chain.doFilter(request, httpResponse);
         } finally {
-            recordService.save(new Record(endpoint, httpResponse.getStatus(), HttpStatus.valueOf(httpResponse.getStatus()).toString(), getResponseBody(httpResponse)));
+            if (isValidPath(endpoint)) {
+                recordService.save(new Record(endpoint, httpResponse.getStatus(), HttpStatus.valueOf(httpResponse.getStatus()).toString(), getResponseBody(httpResponse)));
+            }
             httpResponse.copyBodyToResponse();
         }
     }
@@ -43,4 +46,9 @@ public class RecordFilter implements Filter {
         }
         return responseBody;
     }
+
+    private boolean isValidPath(String endpoint) {
+        return Stream.of("api-docs", "swagger-ui").noneMatch(endpoint::contains);
+    }
+
 }

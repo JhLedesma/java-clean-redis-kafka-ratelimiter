@@ -16,6 +16,8 @@ public class RateLimiterInterceptorConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(rateLimiterInterceptor).excludePathPatterns("/**/swagger-ui/**");
+        registry.addInterceptor(rateLimiterInterceptor)
+                .excludePathPatterns("/**/swagger-ui/**")
+                .excludePathPatterns("/**/api-docs/**");
     }
 }

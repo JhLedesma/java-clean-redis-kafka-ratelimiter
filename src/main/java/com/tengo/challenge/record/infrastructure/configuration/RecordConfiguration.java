@@ -8,12 +8,14 @@ import com.tengo.challenge.record.infrastructure.repository.RecordDao;
 import com.tengo.challenge.record.infrastructure.repository.RecordRepositoryAdapter;
 import com.tengo.challenge.shared.domain.ModelMapper;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @Configuration
 @EnableJpaAuditing
+@ServletComponentScan
 public class RecordConfiguration {
 
     @Bean
@@ -31,7 +33,6 @@ public class RecordConfiguration {
         FilterRegistrationBean<RecordFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new RecordFilter(objectMapper, recordService));
         registrationBean.addUrlPatterns("/*");
-        registrationBean.addInitParameter("exclusions", "/challenge/swagger-ui/*");
         return registrationBean;
     }
 }

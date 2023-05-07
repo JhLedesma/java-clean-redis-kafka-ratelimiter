@@ -1,5 +1,6 @@
 package com.tengo.challenge.addition.infrastructure.controller;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,10 +14,8 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdditionInput {
-    @NotNull(message = "Value 1 must not be null")
-    @Positive(message = "Value 2 must be positive")
+    @NotNull(message = "Value 1 must not be null") @Positive(message = "Value 2 must be positive") @Schema(defaultValue = "5")
     private Integer value1;
-    @NotNull(message = "Value 1 must not be null")
-    @Positive(message = "Value 2 must be positive")
+    @NotNull(message = "Value 1 must not be null") @Positive(message = "Value 2 must be positive") @Schema(defaultValue = "5")
     private Integer value2;
 }
