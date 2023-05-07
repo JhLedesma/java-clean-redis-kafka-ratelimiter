@@ -1,10 +1,9 @@
 package com.tengo.challenge.addition.infrastructure.controller;
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.tengo.challenge.addition.application.AdditionService;
 import com.tengo.challenge.addition.domain.Addition;
-import com.tengo.challenge.record.application.RecordService;
+import com.tengo.challenge.ratelimiter.domain.RateLimited;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,16 +14,12 @@ import javax.validation.Valid;
 public class AdditionController {
 
     private final AdditionService additionService;
-    private final RecordService recordService;
-    private final ObjectMapper objectMapper;
 
-
-    public AdditionController(AdditionService additionService, RecordService recordService, ObjectMapper objectMapper) {
+    public AdditionController(AdditionService additionService) {
         this.additionService = additionService;
-        this.recordService = recordService;
-        this.objectMapper = objectMapper;
     }
 
+    @RateLimited
     @PostMapping("/addition")
     @ResponseBody
     public ResponseEntity<Addition> sum(@Valid @RequestBody AdditionInput additionInput) {

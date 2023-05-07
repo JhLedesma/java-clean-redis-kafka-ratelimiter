@@ -16,11 +16,11 @@ import org.springframework.web.client.RestTemplate;
 @Configuration
 @EnableRetry
 @EnableRedisRepositories
-public class PercentageBeans {
+public class PercentageConfiguration {
 
     @Value("${clients.randominteger.url}")
     private String percentageUrl;
-    @Value("${clients.randominteger.cachedSeconds}")
+    @Value("${clients.randominteger.cachedseconds}")
     private Integer cachedSeconds;
     @Value("${clients.randominteger.mock}")
     private boolean mock;
