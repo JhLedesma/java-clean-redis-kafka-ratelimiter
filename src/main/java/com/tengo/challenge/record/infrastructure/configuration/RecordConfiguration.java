@@ -31,6 +31,7 @@ public class RecordConfiguration {
         FilterRegistrationBean<RecordFilter> registrationBean = new FilterRegistrationBean<>();
         registrationBean.setFilter(new RecordFilter(objectMapper, recordService));
         registrationBean.addUrlPatterns("/*");
+        registrationBean.addInitParameter("exclusions", "/challenge/swagger-ui/*");
         return registrationBean;
     }
 }
