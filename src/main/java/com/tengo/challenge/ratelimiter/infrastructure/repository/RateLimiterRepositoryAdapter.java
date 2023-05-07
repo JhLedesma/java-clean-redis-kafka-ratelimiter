@@ -8,19 +8,19 @@ import java.time.Duration;
 public class RateLimiterRepositoryAdapter implements RateLimiterRepository {
 
     private final RedisTemplate<String, Integer> redisTemplate;
-    private static final String KEY = "rate_limit";
+    private static final String PREFIX = "rate_limit";
 
     public RateLimiterRepositoryAdapter(RedisTemplate<String, Integer> redisTemplate) {
         this.redisTemplate = redisTemplate;
     }
 
     @Override
-    public Long increment() {
-        return redisTemplate.opsForValue().increment(KEY);
+    public Long increment(String key) {
+        return redisTemplate.opsForValue().increment(PREFIX + key);
     }
 
     @Override
-    public void expire(Duration timeout) {
-        redisTemplate.expire(KEY, timeout);
+    public void expire(String key, Duration timeout) {
+        redisTemplate.expire(PREFIX + key, timeout);
     }
 }

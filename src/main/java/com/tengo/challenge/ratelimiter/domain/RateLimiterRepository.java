@@ -4,6 +4,6 @@ import java.time.Duration;
 
 public interface RateLimiterRepository {
 
-    public Long increment();
-    public void expire(Duration timeout);
+    public Long increment(String key);
+    public void expire(String key, Duration timeout);
 }

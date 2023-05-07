@@ -8,19 +8,15 @@ import java.time.Duration;
 public class RateLimiter {
 
     private final RateLimiterRepository rateLimiterRepository;
-    private final int limit;
-    private final int timeIntervalInSeconds;
 
-    public RateLimiter(RateLimiterRepository rateLimiterRepository, int limit, int timeIntervalInSeconds) {
+    public RateLimiter(RateLimiterRepository rateLimiterRepository) {
         this.rateLimiterRepository = rateLimiterRepository;
-        this.limit = limit;
-        this.timeIntervalInSeconds = timeIntervalInSeconds;
     }
 
-    public void checkLimit() {
-        Long counter = rateLimiterRepository.increment();
+    public void checkLimit(String endpoint, int limit, int timeIntervalInSeconds) {
+        Long counter = rateLimiterRepository.increment(endpoint);
         if (counter == 1) {
-            rateLimiterRepository.expire(Duration.ofSeconds(timeIntervalInSeconds));
+            rateLimiterRepository.expire(endpoint, Duration.ofSeconds(timeIntervalInSeconds));
         }
         if (counter > limit) {
             throw new TooManyRequestsException(String.format("Too many requests. Limit: %s request in %s seconds", limit, timeIntervalInSeconds));
