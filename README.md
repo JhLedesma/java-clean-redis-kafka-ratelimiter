@@ -98,12 +98,12 @@ Response:
             "responseStatus": "429 TOO_MANY_REQUESTS"
         },
         {
-            "id": "5e918d7e-5507-413e-a809-ffec1cb64cd6",
-            "endpoint": "/challenge/api/v1/operations/addition",
-            "creationDate": "2023-05-07T22:22:43.331342",
+            "id": "eb58c776-e174-4d11-a467-f65f74dc51cf",
+            "endpoint": "/challenge/api/v1/records",
+            "creationDate": "2023-05-07T23:33:26.044023",
             "responseCode": 200,
             "responseStatus": "200 OK",
-            "response": "\"{\\\"value1\\\":5,\\\"value2\\\":5,\\\"percentage\\\":67,\\\"total\\\":16.7}\""
+            "response": "\"{\\\"results\\\":[{\\\"id\\\":\\\"22ad737f-2fea-4fff-a25d-aeb2ab41086a\\\",\\\"endpoint\\\":\\\"/challenge/api/v1/operations/addition\\\",\\\"creationDate\\\":\\\"2023-05-07T23:33:21.057357\\\",\\\"responseCode\\\":200,\\\"responseStatus\\\":\\\"200 OK\\\",\\\"response\\\":\\\"\\\\\\\"{\\\\\\\\\\\\\\\"value1\\\\\\\\\\\\\\\":5,\\\\\\\\\\\\\\\"value2\\\\\\\\\\\\\\\":5,\\\\\\\\\\\\\\\"percentage\\\\\\\\\\\\\\\":77,\\\\\\\\\\\\\\\"total\\\\\\\\\\\\\\\":17.7}\\\\\\\"\\\"}],\\\"totalElements\\\":1,\\\"pageNumber\\\":0,\\\"pageSize\\\":5}\""
         }
     ],
     "totalElements": 3,
