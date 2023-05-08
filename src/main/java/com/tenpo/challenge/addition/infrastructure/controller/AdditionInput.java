@@ -14,8 +14,13 @@ import javax.validation.constraints.Positive;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdditionInput {
-    @NotNull(message = "Value 1 must not be null") @Positive(message = "Value 2 must be positive") @Schema(defaultValue = "5")
+    @NotNull(message = "Value 1 must not be null")
+    @Positive(message = "Value 1 must be positive")
+    @Schema(defaultValue = "5")
     private Integer value1;
-    @NotNull(message = "Value 1 must not be null") @Positive(message = "Value 2 must be positive") @Schema(defaultValue = "5")
+
+    @NotNull(message = "Value 2 must not be null")
+    @Positive(message = "Value 2 must be positive")
+    @Schema(defaultValue = "5")
     private Integer value2;
 }

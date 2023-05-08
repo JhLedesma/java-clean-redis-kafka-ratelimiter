@@ -3,6 +3,7 @@ package com.tenpo.challenge.exception.infrastructure;
 import com.tenpo.challenge.exception.domain.*;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -20,6 +21,12 @@ public class GlobalExceptionController {
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorOutput handleTooManyRequestsException(BadRequestException exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorOutput handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.BAD_REQUEST);
     }
 
