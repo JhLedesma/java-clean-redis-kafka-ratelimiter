@@ -14,37 +14,43 @@ public class GlobalExceptionController {
 
     @ExceptionHandler(TooManyRequestsException.class)
     @ResponseStatus(HttpStatus.TOO_MANY_REQUESTS)
-    public ErrorOutput handleTooManyRequestsException(TooManyRequestsException exception, WebRequest request) {
+    public ErrorOutput handle(TooManyRequestsException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.TOO_MANY_REQUESTS);
     }
 
     @ExceptionHandler(BadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorOutput handleTooManyRequestsException(BadRequestException exception, WebRequest request) {
+    public ErrorOutput handle(BadRequestException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorOutput handleMethodArgumentNotValidException(MethodArgumentNotValidException exception, WebRequest request) {
+    public ErrorOutput handle(MethodArgumentNotValidException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(ResourceNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorOutput handleTooManyRequestsException(ResourceNotFoundException exception, WebRequest request) {
+    public ErrorOutput handle(ResourceNotFoundException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(ChallangeException.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorOutput handleTooManyRequestsException(ChallangeException exception, WebRequest request) {
+    public ErrorOutput handle(ChallangeException exception, WebRequest request) {
+        return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    @ExceptionHandler(InternalServerErrorException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ErrorOutput handle(InternalServerErrorException exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorOutput handleTooManyRequestsException(Exception exception, WebRequest request) {
+    public ErrorOutput handle(Exception exception, WebRequest request) {
         return getErrorOutput(exception, request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
