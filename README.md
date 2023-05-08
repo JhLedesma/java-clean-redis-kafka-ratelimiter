@@ -142,7 +142,9 @@ Debido a que la logica se repite en todos los endpoints se opto por utilizar un 
 
 Debido a que un error al lanzar un hilo puede evitar que se persista el historico, 
 se opto por enviar un evento por medio de kakfa (Programado de una forma que puede ser intercambiado por cualquier broker).
-El evento es consumido y persiste el historico
+
+El evento es consumido y persiste el historico.
+E inclusive la logica de enviar el evento tambien se lanza en un hilo separado del hilo principal de la request
 
 ## Rate Limiter
 Se establecio como requerimiento que la API de suma debe recibir como maximo de 3 rpm 
