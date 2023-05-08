@@ -138,7 +138,7 @@ Se pide como requerimiento guardar el historial de todos los endpoint de sistema
 - Sume tiempo al servicio invocado
 - Un error afecte al servicio invocado
 
-Debido a que la logica se repite en todos los endpoint de opto por utilizar un filter para evitar repeticio de codigo
+Debido a que la logica se repite en todos los endpoints se opto por utilizar un filter para evitar repeticion de codigo en cada endpoint
 
 Debido a que un error al lanzar un hilo puede evitar que se persista el historico, 
 se opto por enviar un evento por medio de kakfa (Programado de una forma que puede ser intercambiado por cualquier broker).
@@ -149,11 +149,11 @@ Se establecio como requerimiento que la API de suma debe recibir como maximo de 
 
 Para resolverlo:
 - Se programo una anottation @RateLimited, donde se puede configurar la cantidad de request y en un determinado tiempo
-- La anotation permite una configuracion granular por endpoint
+- La anotation permite una configuracion granular por cada endpoint
 - La solucion es **Distribuida**
 - Se utilizo una base de datos Redis para de forma atomica contar las request 
 (Esta programado de forma que pueda ser remplazada por cualquier otra base con atomocidad) 
-- Se Utilizo un interceptor y reflection para verificar la anotation en cada request que entra a un endpoint
+- Se Utilizo un interceptor y reflection para verificar la anotation en cada request que entra a un endpoint y no repetir codigo
 
 ### Posibles Mejoras
 1) La solcucion podria lograr una performance como si se usara GO. 
