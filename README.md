@@ -55,7 +55,7 @@ https://youtu.be/qcDfwMF3hHI
 - Se puede acceder a swagger a traves de http://localhost:8080/challenge/swagger-ui/index.html
 
 
-###/operations/addition
+### /operations/addition
 Request:
 ```
 {
@@ -74,7 +74,7 @@ Response:
 }
 ```
 
-###/records?pageNumber=0&pageSize=5
+### /records?pageNumber=0&pageSize=5
 - pageNumber default = 0
 - pageSize = 5
 
