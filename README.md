@@ -8,7 +8,7 @@ Medium: https://jesusledesma.medium.com/
 
 Canal de Youtube: https://www.youtube.com/@jesusledesma895/videos
 
-### Tecnologias
+## Tecnologias
 
 - Java 11
 - Spring Boot 2.7.11
@@ -24,7 +24,7 @@ Canal de Youtube: https://www.youtube.com/@jesusledesma895/videos
 - Maven
 - Docker
 
-### Inicio de app
+## Inicio de app
 
 Para iniciar la aplicacion ejecutar
 
@@ -38,7 +38,7 @@ Para iniciar la aplicacion ejecutar
 
 ` docker rm -f $(docker ps -aq)`
 
-### Arquitectura
+## Arquitectura
 La aplicacion esta estructurada con Clean-Architecture orientada a DDD
 
 Esta decision permite mayor flexibidad, desacople de las tecnologias antes mencionadas y cohesion 
@@ -46,16 +46,16 @@ al punto de que podriamos cambiar el framework, las bases de datos y el broker d
 
 La estructuracion de paquete es orientada a conceptos del dominio y luego en el tipo de componente
 
-Comparto una charla tech que realice para una empresa para mas informacion
+Comparto una **charla tech** que realice para una empresa para mas informacion
 https://youtu.be/qcDfwMF3hHI
 
-### API
+## API
 
 - En la raiz del proyecto esta la collection de postman
 - Se puede acceder a swagger a traves de http://localhost:8080/challenge/swagger-ui/index.html
 
 
-####/operations/addition
+###/operations/addition
 Request:
 ```
 {
@@ -74,7 +74,7 @@ Response:
 }
 ```
 
-####/records?pageNumber=0&pageSize=5
+###/records?pageNumber=0&pageSize=5
 - pageNumber default = 0
 - pageSize = 5
 
@@ -112,7 +112,7 @@ Response:
 }
 ```
 
-### Cache y Servicio externo
+## Cache y Servicio externo
 El servicio externo es:
 http://www.randomnumberapi.com/api/v1.0/random?min=1&max=100&count=1
 
@@ -133,7 +133,7 @@ cachedseconds = 1800
 mock = false
 ```
 
-### Eventos y Filter
+## Eventos y Filter
 Se pide como requerimiento guardar el historial de todos los endpoint de sistema sin que: 
 - Sume tiempo al servicio invocado
 - Un error afecte al servicio invocado
@@ -144,7 +144,7 @@ Debido a que un error al lanzar un hilo puede evitar que se persista el historic
 se opto por enviar un evento por medio de kakfa (Programado de una forma que puede ser intercambiado por cualquier broker).
 El evento es consumido y persiste el historico
 
-### Rate Limiter
+## Rate Limiter
 Se establecio como requerimiento que la API de suma debe recibir como maximo de 3 rpm 
 
 Para resolverlo:
@@ -155,7 +155,7 @@ Para resolverlo:
 (Esta programado de forma que pueda ser remplazada por cualquier otra base con atomocidad) 
 - Se Utilizo un interceptor y reflection para verificar la anotation en cada request que entra a un endpoint y no repetir codigo
 
-### Errores
+## Errores
 
 Se pide un buen manejo de errores para ello se trabajo en dos puntos de la aplicación
 
@@ -175,10 +175,10 @@ para que cuando llegue a nuestro cliente haya mas informacion
 }
 ```
 
-### Posibles Mejoras
+## Posibles Mejoras
 1) La solucion podria lograr una performance como si se usara GO. 
 Se puede realizar combinando programacion reactiva (Webflux) + Corrutinas (Kotlin) + Clean Architecture. 
-Comparto post que publique respecto al tema 
+**Comparto post que publique** respecto al tema 
 https://jesusledesma.medium.com/migrando-a-clean-architecture-webflux-con-corrutinas-en-kotlin-parte-1-ec382b933438 
 2) Test de Integracion y End-to-End
 3) Guardar contraseñas encryptadas o en un vault
