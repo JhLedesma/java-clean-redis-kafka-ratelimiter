@@ -155,6 +155,16 @@ Para resolverlo:
 (Esta programado de forma que pueda ser remplazada por cualquier otra base con atomocidad) 
 - Se Utilizo un interceptor y reflection para verificar la anotation en cada request que entra a un endpoint y no repetir codigo
 
+### Errores
+
+Se pide un buen manejo de errores para ello se trabajo en dos puntos de la aplicación
+
+- Global error handler: Para manejar los errores antes de que se propagen hasta el cliente, 
+para mostrarselos en un formato amigable y con informacion
+- Client error handler: Para manejar los errores que se puede generar al invocar un servicio externo y 
+traducirlos a errores de nuestra aplicacion, sumando si es que existe el body del error del servicio externo 
+para que cuando llegue a nuestro cliente haya mas informacion
+
 ### Posibles Mejoras
 1) La solcucion podria lograr una performance como si se usara GO. 
 Se puede realizar combinando programacion reactiva (Webflux) + Corrutinas (Kotlin) + Clean Architecture. 
