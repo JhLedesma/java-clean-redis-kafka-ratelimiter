@@ -165,8 +165,18 @@ para mostrarselos en un formato amigable y con informacion
 traducirlos a errores de nuestra aplicacion, sumando si es que existe el body del error del servicio externo 
 para que cuando llegue a nuestro cliente haya mas informacion
 
+```
+{
+    "code": 429,
+    "error": "429 TOO_MANY_REQUESTS",
+    "endpoint": "uri=/challenge/api/v1/operations/addition",
+    "message": "Too many requests. Limit: 3 request in 60 seconds",
+    "stackTrace": "com.tenpo.challenge.exception.domain.TooManyRequestsException: Too many requests. Limit: 3 request in 60 seconds\n\tat com.tenpo.challenge.ratelimiter.application.RateLimiter.checkLimit(RateLimiter.java:22)"
+}
+```
+
 ### Posibles Mejoras
-1) La solcucion podria lograr una performance como si se usara GO. 
+1) La solucion podria lograr una performance como si se usara GO. 
 Se puede realizar combinando programacion reactiva (Webflux) + Corrutinas (Kotlin) + Clean Architecture. 
 Comparto post que publique respecto al tema 
 https://jesusledesma.medium.com/migrando-a-clean-architecture-webflux-con-corrutinas-en-kotlin-parte-1-ec382b933438 
