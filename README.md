@@ -148,7 +148,7 @@ El evento es consumido y persiste el historico
 Se establecio como requerimiento que la API de suma debe recibir como maximo de 3 rpm 
 
 Para resolverlo:
-- Se programo una anottation @RateLimited, donde se puede configurar la cantidad de request y en un determinado tiempo
+- Se programo una anottation `@RateLimited`, donde se puede configurar la cantidad de request y en un determinado tiempo
 - La anotation permite una configuracion granular por cada endpoint
 - La solucion es **Distribuida**
 - Se utilizo una base de datos Redis para de forma atomica contar las request 
