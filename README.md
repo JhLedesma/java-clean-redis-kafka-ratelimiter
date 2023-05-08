@@ -26,7 +26,7 @@ Canal de Youtube: https://www.youtube.com/@jesusledesma895/videos
 
 ## Inicio de app
 
-Para iniciar la aplicacion ejecutar
+Para iniciar la aplicacion. Clonar el proyecto y en la raiz ejecutar
 
 `docker-compose up`
 
