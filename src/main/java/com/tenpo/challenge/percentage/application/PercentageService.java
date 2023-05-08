@@ -22,7 +22,7 @@ public class PercentageService {
     private Integer getFromClient() {
         return Try.of(percentageClient::getPercentage)
                 .map(percentageCache::save)
-                .getOrElse(getLastUsed());
+                .getOrElse(this::getLastUsed);
     }
 
     private Integer getLastUsed() {
